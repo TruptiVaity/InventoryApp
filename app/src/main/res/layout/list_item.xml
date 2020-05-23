@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:padding="@dimen/activity_margin"
+    android:orientation="horizontal"
+    android:descendantFocusability="blocksDescendants"
+    android:layout_gravity="center_horizontal"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/ll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/design_default_color_secondary"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/product_name"
+            android:layout_width="match_parent"
+            android:textAllCaps="true"
+            android:layout_height="match_parent"
+            android:textColor="@color/design_default_color_secondary"
+            android:hint="Product Name"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:id="@+id/metrics_ll">
+        <TextView
+            android:layout_width="wrap_content"
+            android:textColor="@color/design_default_color_secondary"
+            android:layout_height="wrap_content"
+            android:text="Qty: "/>
+    <TextView
+        android:id="@+id/product_qty"
+        android:layout_width="150dp"
+        android:textColor="@color/design_default_color_secondary"
+        android:layout_height="wrap_content"
+        android:hint="Qty"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/design_default_color_secondary"
+            android:text="Price: "/>
+    <TextView
+        android:id="@+id/product_price"
+        android:layout_width="wrap_content"
+        android:textColor="@color/design_default_color_secondary"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/product_name"
+        android:hint="Price"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/sale_button"
+        android:layout_width="match_parent"
+        android:clickable="true"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:layout_height="match_parent"
+        android:paddingLeft="@dimen/activity_margin"
+        android:text="SALE"/>
+</LinearLayout>
