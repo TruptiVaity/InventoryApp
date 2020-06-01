@@ -29,7 +29,7 @@ public class ProductProvider extends ContentProvider {
 
     @Override
     public boolean onCreate() {
-        // TODO: Create and initialize a DBhelper object to gain access to the products database.
+        // Create and initialize a DBhelper object to gain access to the products database.
         mDbHelper = new ProductsDbHelper(getContext());
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
 
@@ -97,7 +97,7 @@ public class ProductProvider extends ContentProvider {
         if (name == null || name.isEmpty()) {
             throw new IllegalArgumentException("Product requires a name");
         }
-        // TODO: Finish sanity checking the rest of the attributes in ContentValues
+        //  Finish sanity checking the rest of the attributes in ContentValues
         Integer price = values.getAsInteger((ProductContract.ProductEntry.COLUMN_PRODUCT_PRICE));
         if(price != null && price < 0){
             throw new IllegalArgumentException("Please update a valid price of the product");
@@ -110,9 +110,9 @@ public class ProductProvider extends ContentProvider {
  **/
         String supplierName = values.getAsString(ProductContract.ProductEntry.COLUMN_PRODUCT_SUPPLIER);
         if (supplierName == null || supplierName.isEmpty()) {
-            throw new IllegalArgumentException("Product requires a name");
+            throw new IllegalArgumentException("Product requires a supplier");
         }
-        // TODO: Insert a new pet into ProductProviderthe pets database table with the given ContentValues
+        // Insert a new pet into ProductProvider the pets database table with the given ContentValues
         SQLiteDatabase database = mDbHelper.getWritableDatabase();
         // Once we know the ID of the new row in the table,
         long id = database.insert(ProductContract.ProductEntry.TABLE_NAME, null, values);
@@ -169,8 +169,8 @@ public class ProductProvider extends ContentProvider {
 
     private int updateProduct(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
 
-        // TODO: Update the selected products in the products database table with the given ContentValues
-        // TODO: Return the number of rows that were affected
+        // Update the selected products in the products database table with the given ContentValues
+        // Return the number of rows that were affected
         if (values.containsKey(ProductContract.ProductEntry.COLUMN_PRODUCT_NAME)) {
             String name = values.getAsString(ProductContract.ProductEntry.COLUMN_PRODUCT_NAME);
             if (name == null) {

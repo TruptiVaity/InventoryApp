@@ -12,6 +12,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,6 +21,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.CursorAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -36,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     ProductCursorAdapter mCursorAdapter;
     Button saleButton;
     TextView quantityTextView;
-    private int newQuantityAfterSale;
+    //private int newQuantityAfterSale;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, EditorActivity.class);
+                Intent intent = new Intent(MainActivity.this, DetailLayout.class);
                 startActivity(intent);
             }
         });
@@ -67,27 +69,17 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         productListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent editIntent = new Intent(MainActivity.this,EditorActivity.class);
+                Intent editIntent = new Intent(MainActivity.this, DetailLayout.class);
                 Uri currentProductUri = ContentUris.withAppendedId(CONTENT_URI,id);
                 editIntent.setData(currentProductUri);
                 startActivity(editIntent);
             }
         });
 
-/**        saleButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int mQuantity = Integer.parseInt(ProductContract.ProductEntry.COLUMN_PRODUCT_QUANTITY);
-                if(mQuantity!=0) {
-                    mQuantity = mQuantity - 1;
-                }
-                quantityTextView.setText(Integer.toString(mQuantity));
-            }
-        });
-**/
         //Kick off the loader
         getLoaderManager().initLoader(PRODUCT_LOADER,null,this);
     }
+
 
     private void insertProduct(){
         ContentValues values = new ContentValues();
